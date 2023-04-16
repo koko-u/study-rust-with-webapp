@@ -1,10 +1,14 @@
-use crate::users::{CreateUser, User};
-use axum::http::StatusCode;
-use axum::response::IntoResponse;
-use axum::Json;
+use axum::routing::{get, post};
+use axum::Router;
 
-pub async fn create_user(Json(payload): Json<CreateUser>) -> impl IntoResponse {
-    let user = User::new(1337, &payload.username);
+use crate::routes::create_user::create_user;
+use crate::routes::root::root;
 
-    (StatusCode::CREATED, Json(user))
+pub fn create_route() -> Router {
+    Router::new()
+        .route("/", get(root))
+        .route("/users", post(create_user))
 }
+
+mod create_user;
+mod root;

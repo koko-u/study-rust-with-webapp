@@ -1,11 +1,11 @@
 use serde::{Deserialize, Serialize};
 
-#[derive(Deserialize)]
+#[derive(Serialize, Deserialize)]
 pub struct CreateUser {
     pub username: String,
 }
 
-#[derive(Serialize)]
+#[derive(Debug, Eq, PartialEq, Serialize, Deserialize)]
 pub struct User {
     id: u64,
     username: String,
