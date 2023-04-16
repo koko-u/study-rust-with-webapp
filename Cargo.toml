@@ -1,0 +1,18 @@
+[workspace]
+members = ["todo-app"]
+
+[workspace.package]
+version = "0.1.0"
+edition = "2021"
+authors = ["KOZAKI Tsuneaki <kozaki.tsuneaki@gmail.com>"]
+
+[workspace.dependencies]
+tokio = { version = "1.26.*", features = ["full"] }
+axum = { version = "0.6.*" }
+hyper = { version = "0.14.*", features = ["full"] }
+serde = { version = "1.0.*", features = ["derive"] }
+mime = { version = "0.3.*" }
+tracing = { version = "0.1.*" }
+tracing-subscriber = { version = "0.3.*", features = ["env-filter"] }
+thiserror = { version = "1.0.*" }
+assert2 = { version = "0.3.*" }
