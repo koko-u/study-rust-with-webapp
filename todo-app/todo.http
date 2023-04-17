@@ -1,8 +1,26 @@
-### POST user
+### GET todos
+GET http://localhost:8080/todos
 
-POST http://localhost:8080/users
+### Create Todo
+POST http://localhost:8080/todos
 Content-Type: application/json
 
 {
-  "username": "山田 太郎"
+  "text": "ジョギングをする"
+}
+
+### Create Todo
+POST http://localhost:8080/todos
+Content-Type: application/json
+
+{
+  "text": "洗濯をする"
+}
+
+### Complete Todo
+PATCH http://localhost:8080/todos/2
+Content-Type: application/json
+
+{
+  "completed": true
 }
