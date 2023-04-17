@@ -9,6 +9,7 @@ authors.workspace = true
 [dependencies]
 tokio = { workspace = true }
 axum = { workspace = true }
+axum-macros = { workspace = true }
 hyper = { workspace = true }
 tower = { workspace = true }
 serde = { workspace = true }

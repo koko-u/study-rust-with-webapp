@@ -3,6 +3,7 @@ use std::env;
 use tracing::info;
 
 use todo_app::routes::create_route;
+use todo_app::todos::repositories::in_memory::TodoRepositoryInMemory;
 
 #[tokio::main]
 async fn main() -> hyper::Result<()> {
@@ -10,7 +11,7 @@ async fn main() -> hyper::Result<()> {
     env::set_var("RUST_LOG", log_level);
     tracing_subscriber::fmt::init();
 
-    let routes = create_route();
+    let routes = create_route(TodoRepositoryInMemory::new());
     let app = axum::Server::bind(&([127, 0, 0, 1], 8080).into()).serve(routes.into_make_service());
 
     info!("Listening on {}", app.local_addr());

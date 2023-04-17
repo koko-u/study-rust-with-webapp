@@ -1,14 +1,18 @@
+use std::sync::Arc;
+
+use axum::{Extension, Router};
 use axum::routing::{get, post};
-use axum::Router;
 
-use crate::routes::create_user::create_user;
+use crate::routes::create_todo::create_todo;
 use crate::routes::root::root;
+use crate::todos::repositories::TodoRepository;
 
-pub fn create_route() -> Router {
+pub fn create_route<T: TodoRepository>(repository: T) -> Router {
     Router::new()
         .route("/", get(root))
-        .route("/users", post(create_user))
+        .route("/todos", post(create_todo::<T>))
+        .layer(Extension(Arc::new(repository)))
 }
 
-mod create_user;
+mod create_todo;
 mod root;
